@@ -1,0 +1,467 @@
+/*
+* ===========================================
+* BASIC RULES
+* ===========================================
+*/
+body,
+html {
+  font-size: 16px;
+}
+
+div,
+section,
+main {
+  position: relative;
+}
+
+textarea {
+  resize: none;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+fieldset {
+  border: 0;
+  box-shadow: 0;
+  padding: 10px 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/*
+* ===========================================
+* FONT SIZES
+* ===========================================
+*/
+h1 {
+  font-size: 2.6rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 2.2rem;
+}
+
+h4 {
+  font-size: 2rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+}
+
+h6 {
+  font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1rem;
+}
+
+small {
+  font-size: 85%;
+}
+
+.light {
+  font-weight: 200;
+}
+
+.bold,
+b,
+strong {
+  font-weight: 700;
+}
+
+.italic,
+i {
+  font-style: italic;
+}
+
+
+/*
+* ===========================================
+* GRID
+* ===========================================
+*/
+.grid {
+  display: grid;
+  gap: 1.2rem;
+  align-items: center;
+
+  @for $i from 2 through 12 {
+    &.c-#{$i} {
+      grid-template-columns: repeat(#{$i}, 1fr);
+    }
+
+    &.r-#{$i} {
+      row-gap: 1rem;
+      grid-template-rows: repeat(#{$i}, 1fr);
+    }
+  }
+
+  &.baseline {
+    align-items: baseline;
+  }
+
+  &.start {
+    align-items: start;
+  }
+
+  &.end {
+    align-items: end;
+  }
+
+  &.stretch {
+    &>* {
+      align-self: stretch;
+    }
+  }
+}
+
+/*
+* ===========================================
+* FLEX
+* ===========================================
+*/
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  &.iFlex {
+    display: inline-flex;
+  }
+
+  &.row {
+    flex-direction: row;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+
+  &.start {
+    justify-content: start;
+  }
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.between {
+    justify-content: space-between;
+  }
+
+  &.end {
+    justify-content: end;
+  }
+
+  &.around {
+    justify-content: space-around;
+  }
+
+  &.evenly {
+    justify-content: space-evenly;
+  }
+
+  &.aStretch {
+    align-items: stretch;
+  }
+
+  &.aCenter {
+    align-items: center;
+  }
+
+  &.aEnd {
+    align-items: end;
+  }
+  
+  &.aBaseline {
+    align-items: baseline;
+  }
+
+  &>* {
+    flex: 1 auto;
+  }
+}
+
+/*
+* ===========================================
+* GAP (12 COLUMN SISTEM)
+* ===========================================
+*/
+@for $i from 0 through 12 {
+  .gap-#{$i}{
+    gap: #{$i}#{'rem'};
+  }
+  .rowGap-#{$i}{
+    row-gap: #{$i}#{'rem'};
+  }
+  .colGap-#{$i}{
+    column-gap: #{$i}#{'rem'};
+  }
+}
+
+/*
+* ===========================================
+* MARGINS & PADDINGS
+* ===========================================
+*/
+@for $i from 0 through 15 {
+  //Positive Margins
+  .m-#{$i} {
+    margin: #{$i}#{rem};
+  }
+
+  .my-#{$i} {
+    margin-top: #{$i}#{rem};
+    margin-bottom: #{$i}#{rem};
+  }
+
+  .mx-#{$i} {
+    margin-left: #{$i}#{rem};
+    margin-right: #{$i}#{rem};
+  }
+
+  .mt-#{$i} {
+    margin-top: #{$i}#{rem};
+  }
+
+  .mr-#{$i} {
+    margin-right: #{$i}#{rem};
+  }
+
+  .mb-#{$i} {
+    margin-bottom: #{$i}#{rem};
+  }
+
+  .ml-#{$i} {
+    margin-left: #{$i}#{rem};
+  }
+
+  //Negative Margins
+  .nM-#{$i} {
+    margin: -#{$i}#{rem};
+  }
+
+  .nMy-#{$i} {
+    margin-top: -#{$i}#{rem};
+    margin-bottom: -#{$i}#{rem};
+  }
+
+  .nMx-#{$i} {
+    margin-left: -#{$i}#{rem};
+    margin-right: -#{$i}#{rem};
+  }
+
+  .nMt-#{$i} {
+    margin-top: -#{$i}#{rem};
+  }
+
+  .nMr-#{$i} {
+    margin-right: -#{$i}#{rem};
+  }
+
+  .nMb-#{$i} {
+    margin-bottom: -#{$i}#{rem};
+  }
+
+  .nMl-#{$i} {
+    margin-left: -#{$i}#{rem};
+  }
+
+  //Padding
+  .p-#{$i} {
+    padding: #{$i}#{rem};
+  }
+
+  .py-#{$i} {
+    padding-top: #{$i}#{rem};
+    padding-bottom: #{$i}#{rem};
+  }
+
+  .px-#{$i} {
+    padding-left: #{$i}#{rem};
+    padding-right: #{$i}#{rem};
+  }
+
+  .pt-#{$i} {
+    padding-top: #{$i}#{rem};
+  }
+
+  .pr-#{$i} {
+    padding-right: #{$i}#{rem};
+  }
+
+  .pb-#{$i} {
+    padding-bottom: #{$i}#{rem};
+  }
+
+  .pl-#{$i} {
+    padding-left: #{$i}#{rem};
+  }
+}
+
+.mAuto {
+  margin: 0 auto;
+}
+
+.mLAuto {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.mRAuto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/*
+* ===========================================
+* OPACITY
+* ===========================================
+*/
+@for $i from 0 through 9 {
+  .op-#{$i} {
+    opacity: #{'0.'}#{$i};
+  }
+}
+
+/*
+* ===========================================
+* TEXT ALIGN
+* ===========================================
+*/
+.tRight {
+  text-align: right;
+}
+.tLeft {
+  text-align: left;
+}
+.tJustify {
+  text-align: justify;
+}
+
+/*
+* ===========================================
+* WIDTH & HEIGHTS
+* ===========================================
+*/
+$initial: 5;
+
+@for $i from 1 through 19 {
+  $size: $initial + (5 * $i);
+
+  .w-#{$size} {
+    width: #{$size}#{"%"} ;
+  }
+  .h-#{$size} {
+    height: #{$size}#{"%"} ;
+  }
+}
+
+/*
+* ===========================================
+* VERTICAL ALIGN
+* ===========================================
+*/
+.vam {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.vab {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.vat {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/*
+* ===========================================
+* POSITION
+* ===========================================
+*/
+.pAbsolute {
+  position: absolute;
+}
+
+.pFixed {
+  position: fixed;
+}
+
+.pStatic {
+  position: static;
+}
+
+.pRelative {
+  position: relative;
+}
+
+.pSticky {
+  position: sticky;
+}
+
+/*
+* ===========================================
+* ZINDEX
+* ===========================================
+*/
+@for $i from 1 through 10 {
+  .zindex#{$i} {
+    z-index: #{$i};
+  }
+}
+
+/*
+* ===========================================
+* CURSOR
+* ===========================================
+*/
+.pointer {
+  cursor: pointer;
+}
+
+.grap {
+  cursor: grab;
+}
+
+.cAuto {
+  cursor: auto;
+}
+
+.notAllowed {
+  cursor: not-allowed;
+}
