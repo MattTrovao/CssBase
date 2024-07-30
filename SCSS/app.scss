@@ -19,7 +19,9 @@ textarea {
 }
 
 img {
+  width: 100%;
   max-width: 100%;
+  height: 100%;
   max-height: 100%;
 }
 
@@ -95,6 +97,10 @@ small {
   font-weight: 200;
 }
 
+.regular {
+  font-weight: 400;
+}
+
 .bold,
 b,
 strong {
@@ -106,6 +112,21 @@ i {
   font-style: italic;
 }
 
+.font-xsmall{
+  font-size: .6rem;
+}
+.font-small {
+  font-size: .8rem;
+}
+.font-default { 
+  font-size: 1rem;
+}
+.font-big {
+  font-size: 1.6rem;
+}
+.font-xbig {
+  font-size: 2rem;
+}
 
 /*
 * ===========================================
@@ -157,7 +178,7 @@ i {
   flex-wrap: wrap;
   gap: 1.5rem;
 
-  &.iFlex {
+  &.inline-flex {
     display: inline-flex;
   }
 
@@ -169,47 +190,51 @@ i {
     flex-direction: column;
   }
 
-  &.start {
+  &.justify-start {
     justify-content: start;
   }
 
-  &.center {
+  &.justify-center {
     justify-content: center;
   }
 
-  &.between {
+  &.justify-between {
     justify-content: space-between;
   }
 
-  &.end {
+  &.justify-end {
     justify-content: end;
   }
 
-  &.around {
+  &.justify-around {
     justify-content: space-around;
   }
 
-  &.evenly {
+  &.justify-evenly {
     justify-content: space-evenly;
   }
 
-  &.aStretch {
+  &.aling-stretch {
     align-items: stretch;
   }
 
-  &.aCenter {
+  &.aling-center {
     align-items: center;
   }
 
-  &.aEnd {
+  &.aling-end {
     align-items: end;
   }
   
-  &.aBaseline {
+  &.aling-baseline {
     align-items: baseline;
   }
+  &.aling-start{
+    align-items: start;
+  }
 
-  &>* {
+
+  .auto {
     flex: 1 auto;
   }
 }
@@ -361,14 +386,20 @@ i {
 * TEXT ALIGN
 * ===========================================
 */
-.tRight {
+.text-right {
   text-align: right;
 }
-.tLeft {
+.text-left {
   text-align: left;
 }
-.tJustify {
+.text-justify {
   text-align: justify;
+}
+.text-center {
+  text-align: center;
+}
+.text-end {
+  text-align: end;
 }
 
 /*
@@ -388,6 +419,102 @@ $initial: 5;
     height: #{$size}#{"%"} ;
   }
 }
+
+
+/*
+* ===========================================
+* DISPLAY
+* ===========================================
+*/
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-table {
+  display: table;
+}
+
+.d-table-row {
+  display: table-row;
+}
+
+.d-table-cell {
+  display: table-cell;
+}
+
+.d-table-row-group {
+  display: table-row-group;
+}
+
+.d-table-header-group {
+  display: table-header-group;
+}
+
+.d-table-footer-group {
+  display: table-footer-group;
+}
+
+.d-table-caption {
+  display: table-caption;
+}
+
+.d-table-column {
+  display: table-column;
+}
+
+.d-table-column-group {
+  display: table-column-group;
+}
+
+.d-contents {
+  display: contents;
+}
+
+.d-list-item {
+  display: list-item;
+}
+
+.d-run-in {
+  display: run-in;
+}
+
+.d-ruby {
+  display: ruby;
+}
+
+.d-ruby-base {
+  display: ruby-base;
+}
+
+.d-ruby-text {
+  display: ruby-text;
+}
+
+.d-ruby-base-container {
+  display: ruby-base-container;
+}
+
+.d-ruby-text-container {
+  display: ruby-text-container;
+}
+
+.d-inline-table {
+  display: inline-table;
+}
+
 
 /*
 * ===========================================
@@ -464,4 +591,154 @@ $initial: 5;
 
 .notAllowed {
   cursor: not-allowed;
+}
+
+/*
+* ===========================================
+* CONTAINER
+* ===========================================
+*/
+.container {
+  width: 80dvw;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  .row{
+    width: 95%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+}
+
+/*
+* ===========================================
+* COLORS
+* ===========================================
+*/
+
+// BASIC COLORS FOR THE CLASSES AND VARIABLES
+$colors_base: (
+  "red": #d60e22,
+  "green": #00c911,
+  "blue": #0400ff,
+  "cyan": #06b6d4,
+  "indigo": #6366f1,
+  "pink": #ec4899,
+  "yellow": #ffc107,
+  "purple": #ae00ff,
+  "orange": #ff7300,
+  "gray": #6b7280,
+);
+
+// CREATE A MAP TO GENERATE TEXTS AND BACKGROUND COLORS
+$num_variations: 9;
+$colors: ();
+
+@each $base_name, $base_color in $colors_base {
+  @for $i from 1 through $num_variations {
+    // CHECK MIDDLE POINT (BASE COLOR)
+    $percent: ($i - 5) * 10;
+
+    // CREATE NEW COLOR
+    $new_color: if( $percent >= 0, darken($base_color, abs($percent)), lighten($base_color, abs($percent)));
+
+    // VARIABLE NAME
+    $name: $base_name + ($i * 100);
+
+    // CREATE MAP
+    $colors: map-merge($colors, ($name: $new_color));
+  }
+}
+
+// TEXT AND BACKGROUND COLORS
+@each $name, $color in $colors {
+  .text-#{$name} {
+    color: $color;
+  }
+  .bg-#{$name} {
+    background-color: $color;
+  }
+
+  @for $i from 1 through 5 {
+    .border-#{$name}-#{$i} {
+      border: #{$i}px solid $color; // Borda em todas as direções
+    }
+    .border-top-#{$name}-#{$i} {
+      border-top: #{$i}px solid $color;
+    }
+    .border-right-#{$name}-#{$i} {
+      border-right: #{$i}px solid $color;
+    }
+    .border-bottom-#{$name}-#{$i} {
+      border-bottom: #{$i}px solid $color;
+    }
+    .border-left-#{$name}-#{$i} {
+      border-left: #{$i}px solid $color;
+    }
+  }
+}
+
+
+/*
+* ===========================================
+* FORMS
+* ===========================================
+*/
+
+label {
+  font-size: .8rem;
+  font-weight: 400;
+}
+input {
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: none;
+  margin-top: .5rem;
+  color: #000;
+  font-size: 1rem;
+  height: 30px;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: #000;
+    opacity: .5;
+  }
+
+  &[type="radio"] {
+    border: 1px solid #000;
+    &:checked{
+      border-color: #000;
+    }
+  }
+}
+textarea{
+  width: 100%;
+  height: 5rem;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: none;
+  margin-top: .5rem;
+  color: #000;
+  font-size: 1rem;
+  box-sizing: border-box;
+
+
+  &::placeholder {
+    color: #000;
+    opacity: .5;
+  }
+}
+
+/*
+* ===========================================
+* BORDER RADIUS
+* ===========================================
+*/
+
+@for $i from 2 through 50 {
+  .border-radius-#{$i} {
+    border-radius: #{$i}px;
+  }
 }
